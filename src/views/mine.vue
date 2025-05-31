@@ -508,12 +508,14 @@ const orderOpen = (type) => {
 	orderType = type
 }
 const orderOk = () => {
+	console.log(user.makeMoney,store.user.money)
+	console.log(user.makeMoney>Number(store.user.money))
 	if (user.makeMoney == '') {
 		message.error(lang.value.mine.model.message[0])
 		return
 	}
 	if (orderType == 1) {
-		if (user.makeMoney > store.user.money) {
+		if (user.makeMoney > Number(store.user.money)) {
 			message.error(lang.value.gift.message[2])
 			return
 		}
@@ -553,13 +555,14 @@ const orderOk = () => {
 	if (store.user.dataError != 0) {
 		return
 	}
+	
 	//提现时金额不足提示
-	if (orderType == 1) {
-		if (user.makeMoney > store.user.money) {
-			message.error(lang.value.gift.message[2])
-			return
-		}
-	}
+	// if (orderType == 1) {
+	// 	if (user.makeMoney > Number(store.user.money)) {
+	// 		message.error(lang.value.gift.message[2])
+	// 		return
+	// 	}
+	// }
 	// if(store.user.vipGrade == 0||store.user.vipGrade == '0') {
 	// 	location.href = 'https://line.me/ti/p/~'+store.user.lineCode
 	// 	return
